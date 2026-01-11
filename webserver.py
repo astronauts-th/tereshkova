@@ -78,7 +78,7 @@ def generate_page(message=""):
     nav {
       position: fixed;
       top: 0;
-      width: 100%;
+      width: 100%%;
       padding: 30px 60px;
       display: flex;
       justify-content: space-between;
@@ -122,7 +122,7 @@ def generate_page(message=""):
       height: 220px;
       background-color: var(--primary-green);
       border: 10px solid var(--pure-white);
-      border-radius: 50%;
+      border-radius: 70%%;
       cursor: pointer;
       display: flex;
       justify-content: center;
@@ -153,7 +153,7 @@ def generate_page(message=""):
       width: 200px;
       height: 200px;
       border: 3px solid var(--primary-green);
-      border-radius: 50%;
+      border-radius: 50%%;
       opacity: 0;
       pointer-events: none;
     }
@@ -163,12 +163,12 @@ def generate_page(message=""):
     }
 
     @keyframes pulse-out {
-      0% {
+      0%% {
         transform: scale(1);
         opacity: 0.8;
       }
 
-      100% {
+      100%% {
         transform: scale(2.8);
         opacity: 0;
       }
@@ -280,7 +280,7 @@ def generate_page(message=""):
 
     /* --- SVGS --- */
     .svg-placeholder {
-      width: 100%;
+      width: 100%%;
       height: auto;
       max-width: 400px;
     }
@@ -319,7 +319,7 @@ def generate_page(message=""):
       color: var(--pure-white);
       padding: 15px 30px;
       border-radius: 4px;
-      transform: translateX(200%);
+      transform: translateX(200%%);
       transition: transform 0.5s cubic-bezier(0.19, 1, 0.22, 1);
       z-index: 2000;
     }
@@ -359,7 +359,7 @@ def generate_page(message=""):
       }
 
       .hero-text p {
-        max-width: 100%;
+        max-width: 100%%;
         margin: 0 auto;
       }
 
@@ -406,7 +406,7 @@ def generate_page(message=""):
         bottom: 40px;
         right: 20px;
         left: 20px;
-        transform: translateY(200%);
+        transform: translateY(200%%);
       }
 
       .toast.show {
@@ -430,12 +430,12 @@ def generate_page(message=""):
       }
 
       @keyframes pulse-out {
-        0% {
+        0%% {
           transform: scale(0.8);
           opacity: 0.8;
         }
 
-        100% {
+        100%% {
           transform: scale(2.2);
           opacity: 0;
         }
@@ -585,19 +585,23 @@ def generate_page(message=""):
       status.style.opacity = "1";
       toast.classList.add('show');
 
+      fetch('/on')
       setTimeout(() => {
         toast.classList.remove('show');
         status.textContent = "Secure Standby";
         status.style.opacity = "0.4";
         isActive = false;
+        fetch('/off')        
       }, 3000);
     });
   </script>
 </body>
 
-</html>""" % message
+</html>"""
+    # Use .format() or simple concatenation instead of % formatting
+    if message:
+        html = html.replace('</body>', f'<!-- Status: {message} --></body>')
     return html
-
 while True:
     conn, client_addr = s.accept()
     print("Client connected from", client_addr)
